@@ -68,7 +68,8 @@ module.exports = {
 
     plugins: [
         new HtmlWebPackPlugin({ //html 생성 플러그인
-            inject: 'body', //head에 스크립트를 추가하면 vue가 랜더링 되지않음 이것때문에 한시간 가량 삽질함.(ASIS:head , TOBE:body by 20200420)
+            inject: 'body', //head에 스크립트를 추가하면 vue가 랜더링 되지않음 이것때문에 한시간 가량 삽질함.
+            // ----> vue Cannot find element: #app  #app element를 찾을수 없음: 스크립트 뿌려지고 html이 랜더링되어 해당 오류가 난것으로 보임 따라서 body에 스크립트를 추가해줌 (ASIS:head , TOBE:body by 20200420)
             template: "./src/index.html",
             filename: "index.html" // output으로 출력할 파일이름
         }),

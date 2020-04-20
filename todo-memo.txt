@@ -1,0 +1,30 @@
+npm init -y => package.json 생성
+
+sass로더 sass설치
+
+npm install node-sass sass-loader
+
+
+npm install --save-dev @babel/core babel-loader @babel/preset-env
+
+webpack-dev-server
+
+html-webpack-plugin설치
+index.html을 생성
+
+
+
+----------20200420 일지
+css로 변환, => mini-css-extract-plugin (js제외하는법 알아야댈듯)
+clean-webpack-plugin, build에서 안쓰는 파일 삭제
+vue설치, 
+webpack.config.js HTML플러그인 inject옵션에서 오류발생 경험
+==>head에 스크립트를 추가하면 vue가 랜더링 되지않음 이것때문에 한시간 가량 삽질함.
+==> vue Cannot find element: #app  #app element를 찾을수 없음: 스크립트 뿌려지고 html이 랜더링되어 해당 오류가 난것으로 보임 따라서 body에 스크립트를 추가해줌 (ASIS:head , TOBE:body by 20200420)
+----------
+
+TODOLIST
+ - babel-preset-env 이게뭐길래..
+ - vue 문법 파악 후 컴포넌트 구조설계
+
+
