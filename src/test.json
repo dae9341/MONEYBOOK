@@ -1,0 +1,16 @@
+{
+  "testData": [
+    {
+      "id": "aaa",
+      "name": "kim",
+      "address": "Seoul",
+      "age": "20"
+    },
+    {
+      "id": "bbb",
+      "name": "dae",
+      "address": "Jeju",
+      "age": "23"
+    }
+  ]
+}
