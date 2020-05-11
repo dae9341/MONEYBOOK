@@ -1,13 +1,7 @@
 <template>
     <div>
-        <h1>사용자</h1>
-
-        <ul v-for="item in tests">
-            <li>id : {{item.id}}</li>
-            <li>이름 : {{item.name}}</li>
-            <li>주소 : {{item.address}}</li>
-            <li>나이 : {{item.age}}</li>
-        </ul>
+        <h1>{{message}}</h1>
+        <test-item-child v-bind:tests="tests" ></test-item-child>
     </div>
 </template>
 
@@ -18,14 +12,12 @@
         name :"test-item",
         computed:{
             tests() {
-                return test.testData.map((items) =>{
-                    console.log(items);
-                    return items;
-                })
+                console.log(test);
+                return test;
             }
         },
-
-
+        props: ['message'],
     }
+
 
 </script>
