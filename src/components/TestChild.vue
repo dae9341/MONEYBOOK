@@ -1,6 +1,6 @@
 <template>
     <div class="test-child">
-        <ul v-for="item in testDatasFunc">
+        <ul v-for="item in testDatasFunc()">
             <li>id : {{item.id}}</li>
             <li>이름 : {{item.name}}</li>
             <li>주소 : {{item.address}}</li>
@@ -11,12 +11,11 @@
 </template>
 
 <script>
-    // var td = ;
     export default {
         name:'test-item-child',
         props: ['tests']
         ,
-        computed:{
+        methods:{
             testDatasFunc() {
                 var data = this.tests;
                 return data.testData.map(items =>{
@@ -25,8 +24,6 @@
                 });
 
             },
-
-
-        }
+        },
     }
 </script>
