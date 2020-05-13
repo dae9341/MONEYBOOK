@@ -1,16 +1,21 @@
 {
-  "testData": [
+  "expendData": [
     {
-      "id": "aaa",
-      "name": "kim",
-      "address": "Seoul",
-      "age": "20"
+      "id": "20200513001",
+      "date": "20200513",
+      "isExpend":"Y",
+      "category": "마트",
+      "spendValue": 20000,
+      "spendType" : "신용카드"
     },
     {
-      "id": "bbb",
-      "name": "dae",
-      "address": "Jeju",
-      "age": "23"
+      "id": "20200513002",
+      "date": "20200513",
+      "isExpend":"Y",
+      "category": "음료",
+      "spendValue": 1300,
+      "spendType" : "신용카드"
     }
+
   ]
 }

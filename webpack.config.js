@@ -7,7 +7,7 @@ var VueLoaderPlugin = require("vue-loader/lib/plugin");
 module.exports = {
     entry: { // bundle대상 (오리지날 소스)
         bundleMain:["./src/js/index.js"],
-        bundleCss:["./src/scss/m-common.scss"],
+        bundleCss:["./src/scss/bundle.scss"],
         bundleLib:["jquery"]
     },
     output: { // output으로 출력 (결과물)

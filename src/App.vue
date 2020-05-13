@@ -1,8 +1,9 @@
 <template>
     <div id="app">
         <cpnt-header></cpnt-header>
-        <test-item message="테스트!"></test-item>
-        <content-test></content-test>
+        <cpnt-expendAdd></cpnt-expendAdd>
+        <cpnt-expendList></cpnt-expendList>
+        <cpnt-categoryItem></cpnt-categoryItem>
     </div>
 
 </template>
