@@ -4,7 +4,8 @@ var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var {CleanWebpackPlugin} = require("clean-webpack-plugin");
 var VueLoaderPlugin = require("vue-loader/lib/plugin");
 
-module.exports = {
+// var webpackConfig =
+var webpackConfig = {
     entry: { // bundle대상 (오리지날 소스)
         bundleMain:["./src/js/index.js"],
         bundleCss:["./src/scss/bundle.scss"],
@@ -86,3 +87,6 @@ module.exports = {
         extensions: ['*', '.js', '.vue', '.json']
     },
 };
+
+
+module.exports = webpackConfig;

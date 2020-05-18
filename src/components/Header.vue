@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header id="header" class="header">
         <h1>가꼐부</h1>
     </header>
 </template>
