@@ -2,15 +2,21 @@
     <div class="mainTabWrap">
         <div class="mainTab" id="mainTab">
             <ul>
-                <li><a href="#">종합</a></li>
-                <li><a href="#">수입</a></li>
-                <li><a href="#">지출</a></li>
+                <li v-for="items in tabTitle"><a href="#" v-on:click="currentTab = items">{{items}}</a></li>
             </ul>
         </div>
 
         <div class="mainTabContent" >
-            <ExpendContent></ExpendContent>
-            <IncomeContent></IncomeContent>
+            <!--<div v-bind="setStatus()"></div>-->
+            <div v-if="currentTab === '지출'">
+                <ExpendContent></ExpendContent>
+            </div>
+            <div v-else-if="currentTab === '수입'">
+                <IncomeContent></IncomeContent>
+            </div>
+            <div v-else="currentTab === '종합'">
+                <div>all</div>
+            </div>
         </div>
     </div>
 </template>
@@ -21,37 +27,18 @@
 
     export default {
         name:"cpnt-mainTab",
+        data(){
+            return {
+                currentTab:"종합",
+                tabTitle:["종합","수입","지출"],
+            }
+        },
         components:{
             ExpendContent,IncomeContent
+        },
+        methods:{
+
         }
     }
 
-
-    $(function () {
-        var status = 'all';
-        $("#mainTab").find('li').each(function () {
-            var $me = $(this);
-            var btn = $(this).children('a');
-
-            btn.on('click', function () {
-                var name = $(this).text();
-                switch (name) {
-                    case '종합':
-                        status = 'all';
-                        break;
-                    case '수입':
-                        status = 'in';
-                        break;
-                    case '지출':
-                        status = 'ex';
-                        break;
-                    default:
-                        status = 'all';
-                        break;
-
-                }
-
-            });
-        });
-    })
 </script>
