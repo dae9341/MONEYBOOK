@@ -15,6 +15,14 @@
       "category": "음료",
       "spendValue": 1300,
       "spendType" : "신용카드"
+    },
+    {
+      "id": "20200521001",
+      "date": "20200521",
+      "isExpend":"N",
+      "category": "점심식사",
+      "spendValue": 5000,
+      "spendType" : "신용카드"
     }
 
   ]
