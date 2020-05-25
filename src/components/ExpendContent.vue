@@ -32,8 +32,26 @@
             dataSet:function () {
                 var data = this.items;
                 data = data.filter((da) => (da.isExpend ==="Y"));
-
                 return data;
+            },
+
+            dataUpdate: function () {
+                // console.log("dataUpdata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                $.ajax({
+                    url:"https://script.google.com/macros/s/AKfycbyGLVBZeVViz2yKoQ1HumXwD4OEQNAA-ZBv3kOAVSsYFMwXw9YB/exec",
+                    data:{"ID":"20200519001"},
+                    type:"GET",
+
+                    // 성공시
+                    success:function (data) {
+                        console.log("Success");
+                    },
+
+                    // 에러발생시
+                    error:function (request, status, error) {
+                        console.log("Error");
+                    }
+                })
             }
         }
 
