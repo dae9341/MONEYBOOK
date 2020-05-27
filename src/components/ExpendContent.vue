@@ -16,12 +16,16 @@
                 <span>{{items.spendType}}</span>
             </li>
         </ul>
+
+        <button v-on:click="dataUpdate()">입력!</button>
         <!--<ListItem></ListItem>-->
     </div>
 </template>
 
 <script>
     import ListItem from "../components/ListItem"
+    import axios from "axios"
+
     export default {
         name : 'cpnt-expendContent',
         components:{
@@ -36,22 +40,28 @@
             },
 
             dataUpdate: function () {
-                // console.log("dataUpdata!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                var url = "https://script.google.com/macros/s/AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI/exec";
+                // var url = "https://script.google.com/macros/s/AKfycbyGLVBZeVViz2yKoQ1HumXwD4OEQNAA-ZBv3kOAVSsYFMwXw9YB/exec";
+               /* axios.get(url).then(function (response) {
+                    console.log(response.data);
+                });*/
                 $.ajax({
-                    url:"https://script.google.com/macros/s/AKfycbyGLVBZeVViz2yKoQ1HumXwD4OEQNAA-ZBv3kOAVSsYFMwXw9YB/exec",
-                    data:{"ID":"20200519001"},
-                    type:"GET",
-
-                    // 성공시
-                    success:function (data) {
-                        console.log("Success");
+                    url: url,
+                    method:"POST",
+                    data:{
+                        "ID":"20200527001",
+                        "날짜":"20200527"
                     },
-
-                    // 에러발생시
-                    error:function (request, status, error) {
-                        console.log("Error");
+                    dataType:"json",
+                    cache: false,
+                    async:true
+                    , success: function (data, status, xhr) {
+                        console.log(data);
+                        alert("success");
+                    }, error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(arguments);
                     }
-                })
+                });
             }
         }
 
