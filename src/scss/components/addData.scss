@@ -1,9 +1,31 @@
+/**
+  FileName: addData.scss
+  Author: dae9341
+  Desc: 데이터 입력 컴포넌트
+*/
+
 .addData{width: 100%;height:100%;
   .btnAddData{position: fixed;bottom:20px;left: 20px;width: 50px; height:50px; border-radius: 50%; background: $mainColor; color:#fff;line-height: 1; text-align: center;font-size:40px;}
-  .addDataLayer{
+  .addDataDimed{
     width: 100%; height:100%; position: fixed; top:0; left: 0;
     background: rgba(0,0,0,0.6);
     .btnClose{width: 50px; height:50px; position: absolute; top:20px; right:20px; display: block;}
+
+    .addDataForm{
+      $width:900px;
+      $height:600px;
+      position: fixed;top:50%;left: 50%;margin-top: -$height/2;margin-left: -$width/2;width: $width;height: $height;background: #fff;padding: 20px 40px;box-sizing: border-box;
+      >div{margin-bottom: 20px; text-align: center}
+      .dateLayer{color:$mainColor; font-size: 20px; text-align: left}
+      .spendValueLayer { font-size:26px;
+        span{font-weight: bold; }
+      }
+      .isExpend{
+        >button{font-size: 20px; box-sizing: border-box;
+          &.on{background-color: $mainColor; color:#fff;}
+        }
+      }
+    }
   }
 
 }
