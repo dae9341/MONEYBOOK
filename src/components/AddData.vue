@@ -3,7 +3,7 @@
         <a class="btnAddData" href="#" v-on:click="isOpen = true">+</a>
         <div class="addDataDimed" v-show="isOpen">
             <a href="#" class="btnClose" v-on:click="isOpen = false"><img src="" alt="닫기"></a>
-            <div class="addDataForm">
+            <div class="addDataForm" v-bind="setMoneyBookDate()">
                 <div class="dateLayer">
                     {{getDate()}}
                 </div>
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="category" v-if="!isExpend">
-                    <a href="#" v-for="item in category_in">{{item}}</a>
+                    <a href="#" v-for="item in category_in" v-on:click="category = item">{{item}}</a>
                 </div>
                 <div class="category" v-else="">
                     <a href="#" v-for="item in category_ex">{{item}}</a>
@@ -40,7 +40,8 @@
         data(){
             return {
                 isOpen:true,
-                isExpend:false,
+                isExpend:true,
+                date:"",
                 spendType:"sin", //sin:신용카드, chk:체크카드, hy:현금
                 category:"none",
                 category_in:["급여","용돈","이월","기타","자산인출"],
@@ -50,14 +51,17 @@
         methods:{
             getDate: function () {
                 var date = new Date();
-                var yyyy = date.getFullYear();
+                var yyyy = date.getFullYear().toString();
                 var mm = date.getMonth() + 1;
                 var dd = date.getDate();
                 var today;
-                mm = (mm < 10) ? "0"+mm : mm;
-                dd = (dd < 10) ? "0"+dd : dd;
+                mm = ((mm < 10) ? "0"+mm : mm).toString();
+                dd = ((dd < 10) ? "0"+dd : dd).toString();
 
-                today = yyyy.toString() + "-" + mm.toString() + "-" + dd.toString();
+
+
+                today = yyyy + "-" + mm + "-" + dd;
+                this.date = yyyy + mm + dd;
 
                 return today;
             },
@@ -72,11 +76,25 @@
 
             setMoneyBookDate: function () {
                 var setData ={
-                    date: "",
-                    isExpend:"",
-                    category: "",
-                    spendValue: 0,
+                    date: this.date,
+                    isExpend:this.isExpend,
+                    category: this.category,
+                    spendValue: $("#spendValue").val(),
                     spendType : ""
+                };
+
+                switch (this.spendType) {
+                    case "sin":
+                        setData.spendType = "신용카드";
+                        break;
+                    case "chk":
+                        setData.spendType = "체크카드";
+                        break;
+                    case "hy":
+                        setData.spendType = "현금";
+                        break;
+                    default:
+                        break;
                 }
             }
         }
