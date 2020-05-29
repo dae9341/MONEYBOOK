@@ -25,6 +25,12 @@
           &.on{background-color: $mainColor; color:#fff;}
         }
       }
+
+      .spendType{
+        >button{
+          &.on{background-color: $mainColor; color:#fff;}
+        }
+      }
     }
   }
 
