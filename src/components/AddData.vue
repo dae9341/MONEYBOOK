@@ -3,7 +3,7 @@
         <a class="btnAddData" href="#" v-on:click="isOpen = true">+</a>
         <div class="addDataDimed" v-show="isOpen">
             <a href="#" class="btnClose" v-on:click="isOpen = false"><img src="" alt="닫기"></a>
-            <div class="addDataForm" v-bind="setMoneyBookDate()">
+            <div class="addDataForm">
                 <div class="dateLayer">
                     {{getDate()}}
                 </div>
@@ -13,8 +13,8 @@
                 </div>
 
                 <div class="isExpend">
-                    <button v-on:click="isExpendClickFunc()" v-bind:class="{on: !isExpend}">수입</button>
-                    <button v-on:click="isExpendClickFunc()" v-bind:class="{on: isExpend}">지출</button>
+                    <button v-on:click="isExpendClickFunc(false)" v-bind:class="{on: isExpend === false}">수입</button>
+                    <button v-on:click="isExpendClickFunc(true)" v-bind:class="{on: isExpend === true}">지출</button>
                 </div>
 
                 <div class="category" v-if="!isExpend">
@@ -29,6 +29,8 @@
                     <button v-on:click="spendTypeClickFunc('chk')" v-bind:class="{on: spendType === 'chk'}">체크카드</button>
                     <button v-on:click="spendTypeClickFunc('hy')" v-bind:class="{on: spendType === 'hy'}">현금</button>
                 </div>
+
+                <button v-on:click="dataUpdate(setMoneyBookDate())" >확인</button>
             </div>
         </div>
     </div>
@@ -39,10 +41,10 @@
         name:"cpnt-addData",
         data(){
             return {
-                isOpen:true,
-                isExpend:true,
+                isOpen:false,
+                isExpend:false,
                 date:"",
-                spendType:"sin", //sin:신용카드, chk:체크카드, hy:현금
+                spendType:"none", //sin:신용카드, chk:체크카드, hy:현금
                 category:"none",
                 category_in:["급여","용돈","이월","기타","자산인출"],
                 category_ex:["식비","교통비","문화/생활","생필품","의류","미용","의료/건강","교육","통신비","회비","경조사","저축"]
@@ -66,8 +68,8 @@
                 return today;
             },
 
-            isExpendClickFunc: function () {
-                this.isExpend = !this.isExpend;
+            isExpendClickFunc: function (bool) {
+                this.isExpend = bool;
             },
 
             spendTypeClickFunc: function (type) {
@@ -76,26 +78,54 @@
 
             setMoneyBookDate: function () {
                 var setData ={
-                    date: this.date,
-                    isExpend:this.isExpend,
-                    category: this.category,
-                    spendValue: $("#spendValue").val(),
-                    spendType : ""
+                    "날짜": this.date,
+                    "구분": this.isExpend == true ? "지출":"수입",
+                    "카테고리": this.category,
+                    "금액": $("#spendValue").val(),
+                    "지불방식" : ""
                 };
 
                 switch (this.spendType) {
                     case "sin":
-                        setData.spendType = "신용카드";
+                        setData.지불방식 = "신용카드";
                         break;
                     case "chk":
-                        setData.spendType = "체크카드";
+                        setData.지불방식 = "체크카드";
                         break;
                     case "hy":
-                        setData.spendType = "현금";
+                        setData.지불방식 = "현금";
                         break;
                     default:
                         break;
                 }
+
+                console.log(setData);
+                return setData
+            },
+
+
+            dataUpdate: function (data) {
+                var url = "https://script.google.com/macros/s/AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI/exec";
+                // var url = "https://script.google.com/macros/s/AKfycbyGLVBZeVViz2yKoQ1HumXwD4OEQNAA-ZBv3kOAVSsYFMwXw9YB/exec";
+                /* axios.get(url).then(function (response) {
+                     console.log(response.data);
+                 });*/
+                setTimeout(function () {
+                    $.ajax({
+                        url: url,
+                        method:"POST",
+                        data:data,
+                        dataType:"json",
+                        cache: false,
+                        async:true
+                        , success: function (data, status, xhr) {
+                            alert("등록되었습니다!");
+                        }, error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(arguments);
+                            alert("실패!");
+                        }
+                    });
+                },1000);
             }
         }
 
