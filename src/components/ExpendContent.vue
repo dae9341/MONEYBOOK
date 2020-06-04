@@ -21,19 +21,23 @@
             },
 
             dataLoad:function () {
-                var url = "https://docs.google.com/spreadsheets/d/1tdRANwPOnOJTOmKJOfj9v-filWw8x8Z3Td1vZgFkF_A/edit#gid=0";
-                var param = {"key":"AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI"};
+                //key: 1tdRANwPOnOJTOmKJOfj9v-filWw8x8Z3Td1vZgFkF_A
+                //id: AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI
+                // var url = "https://sheets.googleapis.com/v4/spreadsheets/AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI/values/A1%3AA200?includeValuesInResponse=false&valueInputOption=RAW&key=AIzaSyAdvMK0V-SuuDKa6PYuqg3Xz33JR4Pwg-4"
+                var url = "https://sheets.googleapis.com/v4/spreadsheets/AKfycbxWqIKpUnzxDMD6feaIrjY2yBNXBTSO2RH8vxkQUGLGki8U2tI/values/시트1";
+                var param = {"key":"1tdRANwPOnOJTOmKJOfj9v-filWw8x8Z3Td1vZgFkF_A"};
                 $.ajax({
                     url: url,
                     method:"GET",
                     dataType:"json",
                     data:param,
                     cache: false,
-                    async:true
-                    , success: function (data, status, xhr) {
+                    async:true,
+                    success: function (data, status, xhr) {
                         alert("success");
                         console.log(data);
-                    }, error: function (jqXHR, textStatus, errorThrown) {
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
                         alert("error");
                         console.log(arguments);
                     }
